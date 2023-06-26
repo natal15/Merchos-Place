@@ -8,9 +8,10 @@ que comer por separado, porque no comen a la misma velocidad, tienen intoleranci
 que van de la manos de las medicaciones; y las castraciones y las visitas veterinarias, ya que se van castrando poco a poco cuando 
 hay fondos para ello y hay que llevar un control.
 
-Como usuario quiero poder registrarme si no poseo ya una cuenta en la página. Un vez con la cuenta creada, quiero poder acceder
-a los datos del refugio. Debe existir un enlace entra la página de registro  y la página de login. En caso de estar registrado 
-poder acceder a través de login y en caso de no estar registrado, poder acceder desde la página de resgistro y después logarme.
+Como usuario, deben existir dos vertientes. En una de ellas, el usuario no posee cuenta y podrá acceder sólo a la parte de la app
+no protegida. Por otro lado, el usuario logado, debe de pedir permiso para ello, mediante un mail o contacto con la asociación.
+Este usuario, si se le permite, se debe crear una cuenta en el back y otorgar los datos de logeo. Una vez los tenga, podrá entrar
+en la parte protegida de la web.
 
 Despúes de seguir los pasos anteriores, desde la página de login debe aparecerme la página principal del refugio.
 
@@ -63,6 +64,13 @@ Tabla food:
 
 - id (uuid v4, PK)
 - Name (text, not null)
+
+Tabla users:
+
+- id (uuid v4, PK)
+- NickName (text, not null)
+- Email (text, unique not null)
+- Password (text, not null, encrypted)
 
 Dos tablas intermedias para conectar casa perro con su medicina y otra para conectarlo con su pienso:
 
