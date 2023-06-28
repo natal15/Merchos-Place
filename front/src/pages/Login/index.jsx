@@ -18,7 +18,7 @@ const Login = () => {
     <Styled.Page>
       <Title>Login</Title>
 
-      <Form onSubmit={login} button="Create">
+      <Form onSubmit={login} button="Enga pa entro">
         <Input
           name="email"
           label={true}
@@ -35,7 +35,7 @@ const Login = () => {
       </Form>
 
       <Footer>
-        <Link to="/register">Don't have account yet? Create one!</Link>
+        {/* <Link to="/register">Don't have account yet? Create one!</Link> */}
       </Footer>
     </Styled.Page>
   );

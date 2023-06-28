@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Redirect, Switch } from "wouter";
+import Styled from "./styles"; 
 
 import Route from "./components/Route";
 import Provider from "./context/Provider";
