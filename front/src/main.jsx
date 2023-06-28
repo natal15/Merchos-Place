@@ -1,10 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { Redirect, Switch } from "wouter";
 
+import Route from "./components/Route";
+import Provider from "./context/Provider";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
 
 
 const Main = () => {
-  return <h1>Mercho´s Place</h1>
+  return (
+    <Provider>
+      <Styled.Wrapper>
+        <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/" guarded={true} component={Home} />
+          <Redirect to="/login" />
+        </Switch>
+      </Styled.Wrapper>
+    </Provider>
+  )
 }
 
 
