@@ -49,34 +49,36 @@ Añado datos visuales en un archivo png.
 Debemos tener una tabla dogs:
 
 - id (uuid v4, PK)
-- Name (text, not null)
-- Meds (text, not null)
-- Food (text, not null)
-- Eat (text, not null)
-- Castrated (text, not null)
+- dogname (text, not null)
+- chenil (number, not null)
+- gender (text, not null)
+- takesmeds (text, not null)
+- specialfood (text, not null)
+- eatbehavior (text, not null)
+- castrated (text, not null)
 
 Tabla meds:
 
 - id (uuid v4, PK)
-- Name (text, not null)
+- medname (text, not null)
 
-Tabla food:
+Tabla foods:
 
 - id (uuid v4, PK)
-- Name (text, not null)
+- foodname (text, not null)
 
 Tabla users:
 
 - id (uuid v4, PK)
-- NickName (text, not null)
-- Email (text, unique not null)
-- Password (text, not null, encrypted)
+- nickname (text, not null)
+- email (text, unique not null)
+- password (text, not null, encrypted)
 
 Dos tablas intermedias para conectar casa perro con su medicina y otra para conectarlo con su pienso:
 
 dogs_meds
 
-dogs_food
+dogs_foods
 
 Se tendrían que hacer peticiones get para obtener los datos de los perros y también post, delete y put para
 la actualización de los listados y el mapa.

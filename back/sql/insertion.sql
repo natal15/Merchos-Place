@@ -1,9 +1,9 @@
 -- Dogs table
 
 INSERT INTO dogs (
-    dogname, takesmeds, specialfood, eatbehavior, castrated 
+    dogname, chenil, gender, takesmeds, specialfood, eatbehavior, castrated 
 ) VALUES (
-    'Beethoven', 'yes', 'yes', 'supervise', 'yes'
+    'Beethoven', 25, 'male', 'yes', 'yes', 'supervise', 'yes'
 );
 
 
