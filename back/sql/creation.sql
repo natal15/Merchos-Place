@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS dogs (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     dogname TEXT NOT NULL,
     takesmeds TEXT NOT NULL,
-    food TEXT NOT NULL,
+    specialfood TEXT NOT NULL,
     eatbehavior TEXT NOT NULL,
     castrated TEXT NOT NULL
 );
