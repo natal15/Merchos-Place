@@ -37,31 +37,31 @@ CREATE TABLE IF NOT EXISTS dogs (
 
 CREATE TABLE IF NOT EXISTS meds (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
-    medname types NOT NULL,
+    medname types NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS foods (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
-    foodname classes NOT NULL,
+    foodname classes NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS dogs_meds (
-  dogs_id uuid REFERENCES dogs (id)
+  dogs_meds_id uuid REFERENCES dogs (id)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
   meds_id uuid REFERENCES meds (id)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
-  CONSTRAINT dogs_id PRIMARY KEY (dogs_id, meds_id)
+  CONSTRAINT dogs_meds_id PRIMARY KEY (dogs_meds_id, meds_id)
 );
 
 CREATE TABLE IF NOT EXISTS dogs_foods (
-  dogs_id uuid REFERENCES dogs (id)
+  dogs_foods_id uuid REFERENCES dogs (id)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
   foods_id uuid REFERENCES foods (id)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
-  CONSTRAINT dogs_id PRIMARY KEY (dogs_id, foods_id)
+  CONSTRAINT dogs_foods_id PRIMARY KEY (dogs_foods_id, foods_id)
 );
 
