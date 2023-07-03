@@ -21,13 +21,13 @@ INSERT INTO meds (
 INSERT INTO foods (
   foodname
 ) VALUES (
-  'diet'::classes
+  'soft'::classes
 );
 
 -- Link dogs_meds
 
 INSERT INTO dogs_meds (
-  dogs_id, meds_id
+  dogs_meds_id, meds_id
 ) VALUES (
   (SELECT id FROM dogs WHERE dogname LIKE 'Beethoven'),
   (SELECT id FROM meds WHERE medname = 'vitamins')
@@ -37,7 +37,7 @@ INSERT INTO dogs_meds (
 -- Link dogs_foods
 
 INSERT INTO dogs_foods (
-  dogs_id, foods_id
+  dogs_foods_id, foods_id
 ) VALUES (
   (SELECT id FROM dogs WHERE dogname LIKE 'Beethoven'),
   (SELECT id FROM foods WHERE foodname = 'soft')
