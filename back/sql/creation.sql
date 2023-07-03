@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS dogs (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     dogname TEXT NOT NULL,
-    chenil NUMBER NOT NULL,
+    chenil VARCHAR NOT NULL,
     gender TEXT NOT NULL,
     takesmeds TEXT NOT NULL,
     specialfood TEXT NOT NULL,

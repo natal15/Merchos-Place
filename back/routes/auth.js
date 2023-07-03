@@ -3,7 +3,7 @@ const { authorizer, fieldsValidator } = require('../middlewares')
 
 const controllers = require('../controllers/auth')
 
-const signupValidator = fieldsValidator('email', 'username', 'password')
+const signupValidator = fieldsValidator('email', 'nickname', 'password')
 const signinValidator = fieldsValidator('email', 'password')
 
 module.exports = (db) => {

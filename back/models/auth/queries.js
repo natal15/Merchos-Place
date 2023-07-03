@@ -1,15 +1,15 @@
 const { sql } = require('slonik')
 
-const insertUser = (email, username, password) => sql.unsafe`
+const insertUser = (email, nickname, password) => sql.unsafe`
     INSERT INTO users (
-        email, username, password
+        email, nickname, password
     ) VALUES (
-        ${email}, ${username}, ${password}
+        ${email}, ${nickname}, ${password}
     )
 `
 
 const selectByEmail = (email) => sql.unsafe`
-    SELECT email, username, password
+    SELECT email, nickname, password
     FROM users
     WHERE email LIKE ${email}
 `

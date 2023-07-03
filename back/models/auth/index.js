@@ -1,8 +1,8 @@
 const { insertUser, selectByEmail } = require('./queries')
 
-const createUser = (db) => async (email, username, password) => {
+const createUser = (db) => async (email, nickname, password) => {
     try {
-        await db.query(insertUser(email, username, password))
+        await db.query(insertUser(email, nickname, password))
         return {
             ok: true
         }
@@ -35,7 +35,7 @@ const selectUser = (db) => async (email, compareFn) => {
             ok: true,
             content: {
                 email: user.email,
-                username: user.username,
+                nickname: user.nickname,
             }
         }
     } catch(error) {
