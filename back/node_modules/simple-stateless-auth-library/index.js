@@ -1,8 +1,15 @@
-const { hash, cookie, jwt } = require("./utils");
+const { hash, cookie, jwt, time } = require("./utils");
 
-const serialize = (res, payload) => {
+const DEFAULT_EXP_TIME = 300000
+const DEFAULT_TYPE = 'ms'
+
+const serialize = (
+  res,
+  payload,
+  expOptions = { value: DEFAULT_EXP_TIME, type: DEFAULT_TYPE }
+) => {
   const token = jwt.sign(payload);
-  cookie.create(res, token);
+  cookie.create(res, token, time.parseExpTime(expOptions));
 };
 
 const deserialize = (req) => {
@@ -16,6 +23,7 @@ module.exports = {
   hash,
   cookie,
   jwt,
+  time,
   serialize,
   deserialize,
 };
