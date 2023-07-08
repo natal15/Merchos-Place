@@ -1,65 +1,55 @@
 import { Link } from "wouter";
-import React, { useState } from 'react';
+import React from 'react';
+import Menu from '../../components/Menu';
+
 
 const Home = () => {
-    const [isExpanded, setIsExpanded] = useState(false);
-
-    const toggleMenu = () => {
-        setIsExpanded(!isExpanded);
-    };
+    const menuItems = [
+        {
+          id: 1,
+          title: 'Refugio',
+          subMenuItems: [
+            {
+              id: 11,
+              title: 'Especiales',
+              subMenuItems: [],
+            },
+            {
+              id: 12,
+              title: 'Sanos',
+              subMenuItems: [
+                {
+                  id: 121,
+                  title: 'Rollo',
+                  subMenuItems: [],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 2,
+          title: 'Acogidas',
+          subMenuItems: [],
+        },
+      ];
 
 
     return (<>
         <h1>Merchos Place</h1>
         <div>
-            <button onClick={toggleMenu}>
-                🐺Activos
-            </button>
-            {isExpanded && (
-                <ul>
-                    <li>Item 1</li>
-                    <li>Item 2</li>
-                    <li>Item 3</li>
-                </ul>
-            )}
+        <ul>
+      {menuItems.map((item) => (
+        <Menu key={item.id} title={item.title} subMenuItems={item.subMenuItems} />
+      ))}
+    </ul>
         </div>
+        
         <div>
-            <button onClick={toggleMenu}>
-                🐶Adoptados
-            </button>
-            {isExpanded && (
-                <ul>
-                    <li>Item 1</li>
-                    <li>Item 2</li>
-                    <li>Item 3</li>
-                </ul>
-            )}
+        
+            <Link to="/map">Refugio no mapa</Link>
         </div>
-        <div>
-            <button onClick={toggleMenu}>
-                🐕Acogidas
-            </button>
-            {isExpanded && (
-                <ul>
-                    <li>Item 1</li>
-                    <li>Item 2</li>
-                    <li>Item 3</li>
-                </ul>
-            )}
-        </div>
-        <div>
-            <button onClick={toggleMenu}>
-                🌈Rainbow
-            </button>
-            {isExpanded && (
-                <ul>
-                    <li>Item 1</li>
-                    <li>Item 2</li>
-                    <li>Item 3</li>
-                </ul>
-            )}
-        </div>
-        <Link to="/map">Refugio no mapa</Link>
+
     </>)
 }
 

@@ -10,7 +10,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TYPE types AS ENUM (
     'bones', 'digest', 'vitamins', 'leishmaniasis', 'dermatologic',
-    'cardiac'
+    'cardiac', 'nomeds'
 );
 
 CREATE TYPE classes AS ENUM (

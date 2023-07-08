@@ -2,6 +2,7 @@ import axios from "axios";
 
 import { login, logout } from "./auth";
 import { basic } from "./user";
+import { oneDog } from "./dogs"
 
 
 const client = axios.create({
@@ -19,6 +20,10 @@ const user = {
 
 }
 
+const dogs = {
+  oneDog: oneDog(client),
+}
 
 
-export { auth, user };
+
+export { auth, user, dogs };
