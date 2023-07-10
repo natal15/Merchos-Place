@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Styled from './styles'
 
 const Menu = ({ title, subMenuItems }) => {
   const [expanded, setExpanded] = useState(false);
@@ -8,22 +9,22 @@ const Menu = ({ title, subMenuItems }) => {
   };
 
   return (
-    <li>
-      <button onClick={toggleExpanded} aria-expanded={expanded}>
+    <Styled.List>
+      <Styled.Button onClick={toggleExpanded} aria-expanded={expanded}>
         {title}
-      </button>
+      </Styled.Button>
       {expanded && (
-        <ul>
+        <Styled.Test>
           {subMenuItems.length > 0 ? (
             subMenuItems.map((item) => (
             <Menu key={item.id} title={item.title} subMenuItems={item.subMenuItems} />
           ))
           ) : (
-            <li>Static Submenu Text</li>
+            <Styled.List>Static Submenu Text</Styled.List>
             )}
-        </ul>
+        </Styled.Test>
       )}
-    </li>
+    </Styled.List>
   );
 };
 
