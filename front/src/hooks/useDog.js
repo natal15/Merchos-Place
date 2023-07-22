@@ -6,6 +6,5 @@ export const useDog = () => {
     queryKey: ["dog"],
     queryFn: dogs.oneDog,
   });
-
   return { data, isLoading };
 };
