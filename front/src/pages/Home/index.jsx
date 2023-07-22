@@ -2,46 +2,33 @@ import { Link } from "wouter";
 import React from 'react';
 import Menu from '../../components/Menu';
 import Modal from "../../components/Modal";
+// import Tab from '../../components/Tab';
 import Styled from './styles'
-import { useDog } from "../../hooks/useDog";
+import { useDog, useData, useCreate, useDelete } from "../../hooks/useDog";
 import { useUser } from "../../hooks/useUser";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createDog } from "../../services/dogs"
+import { useMutation } from 'react-query'
+import DogForm from "../../components/DogForm";
+import Input from "../../components/Input";
+import { validations } from "../../constants";
+import Button from "../../components/Button";
+
+
+
 
 
 
 const Home = () => {
-  const { data: dogs } = useDog();
+
   const { data: user } = useUser();
+  const { data: dogs } = useDog();
+  const { newDog } = useCreate();
+  const { eraseDog } = useDelete();
+
+  const { required } = validations;
+
   const [showModal, setShowModal] = useState(false);
-  const menuItems = [
-    {
-      id: 1,
-      title: 'Refugio',
-      subMenuItems: [
-        {
-          id: 11,
-          title: 'Especiales',
-          subMenuItems: [],
-        },
-        {
-          id: 12,
-          title: 'Sanos',
-          subMenuItems: [
-            {
-              id: 121,
-              title: '${dogs?.data?.dogname}',
-              subMenuItems: [],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: 2,
-      title: 'Acogidas',
-      subMenuItems: [],
-    },
-  ];
 
   if (showModal) return <Modal handleModal={setShowModal} />;
 
@@ -52,17 +39,90 @@ const Home = () => {
     <h1>Merchos Place</h1>
     <div>
       <Styled.Probe>
-        {menuItems.map((item) => (
-          <Menu key={item.id} title={item.title} subMenuItems={item.subMenuItems} />
-        ))}
+
+        {dogs?.data?.map(({ dogname }) => <Link href={`/map/${dogname}`}>
+          <p>
+            {dogname} -
+
+          </p>
+
+
+        </Link>)}
+
+
       </Styled.Probe>
     </div>
+    <DogForm onSubmit={newDog} button="Otro perrito piloto">
+      <Input
+        name="dogname"
+        label={true}
+        placeholder="dogname"
+        validation={{ required }}
+      />
+      <Input
+        name="chenil"
+        label={true}
+        placeholder="chenil"
+        validation={{ required }}
+      />
+      <Input
+        name="gender"
+        label={true}
+        placeholder="gender"
+        validation={{ required }}
+      />
+      <Input
+        name="takesmeds"
+        label={true}
+        placeholder="takesmeds"
+        validation={{ required }}
+      />
+      <Input
+        name="specialfood"
+        label={true}
+        placeholder="specialfood"
+        validation={{ required }}
+      />
+      <Input
+        name="eatbehavior"
+        label={true}
+        placeholder="eatbehavior"
+        validation={{ required }}
+      />
+      <Input
+        name="castrated"
+        label={true}
+        placeholder="castrated"
+        validation={{ required }}
+      />
+    </DogForm>
+    <form button="Más cositas">
+      <div>
+      <input name="dogname"
+        label={true}
+        placeholder="dogname"
+        validation={{ required }}>
+      </input>
+      </div>
+      <label for="meds_dog">Choose meds:
+        <select name="meds" id="meds_dog">
+          <option value="vitamins">Vitamins</option>
+          <option value="bones">Bones</option>
+          <option value="digest">Digest</option>
+          <option value="dermatologic">Dermatologic</option>
+          <option value="cardiac">Cardiac</option>
+
+        </select>
+      </label>
+      <div>
+      <button>+ cositas</button>
+      </div>
+    </form>
 
     <div>
-
-      <Link to="/map">Refugio no mapa</Link>
-      <p>Perretes{dogs?.data?.dogname}</p>
+      <p>Perretes</p>
     </div>
+
 
   </>)
 }

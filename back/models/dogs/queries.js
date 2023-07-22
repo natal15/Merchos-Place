@@ -3,7 +3,7 @@ const { sql } = require('slonik')
 //para seleccionar los perros
 const all = () => sql.unsafe`
    
-        SELECT *
+        SELECT dogname
         FROM dogs
         `
 //seleccionar un único perro
@@ -18,9 +18,51 @@ const one = (selectDog) => sql.unsafe`
         WHERE dogs.dogname = ${selectDog}
         GROUP BY dogs.chenil, dogs.eatbehavior, dogs.castrated, foods.foodname
         `
+const eliminateDog = (elim) => sql.unsafe`
+       
+        DELETE FROM Dogs
+        WHERE dogname = ${elim}
+        `
+
+const showDog = (dogname, chenil, gender, takesmeds, 
+        specialfood, eatbehavior, castrated, dogname1, foodname, dogname2, medname)  => sql.unsafe`
+        
+        INSERT INTO Dogs
+        (dogname, chenil, gender, takesmeds,
+        specialfood, eatbehavior, castrated)
+        VALUES (${dogname}, ${chenil}, ${gender}, ${takesmeds}, 
+        ${specialfood}, ${eatbehavior}, ${castrated})
+        `
+// const medsFoods = (dogname1, foodname, dogname2, medname) => sql.unsafe`
+//         INSERT INTO dogs_foods (
+//                 dogs_foods_id, foods_id
+//               ) VALUES (
+//                 (SELECT id FROM dogs WHERE dogname = ${dogname1}),
+//                 (SELECT id FROM foods WHERE foodname = ${foodname})
+//               );
+              
+//               INSERT INTO dogs_meds (
+//                 dogs_meds_id, meds_id
+//               ) VALUES (
+//                 (SELECT id FROM dogs WHERE dogname = ${dogname2}),
+//                 (SELECT id FROM meds WHERE medname = ${medname})
+//               );
+//               `
+          
+
+const updateDog = (dogname, chenil, takesmeds, 
+        specialfood, eatbehavior, castrated)  => sql.unsafe`
+                
+        UPDATE Dogs 
+        SET chenil = ${chenil}, takesmeds = ${takesmeds}, specialfood = ${specialfood}, 
+        eatbehavior = ${eatbehavior}, castrated = ${castrated}
+        WHERE dogname = ${dogname}
+        `     
 
 module.exports = {
     all,
     one,
-            
+    eliminateDog,
+    showDog,
+    updateDog,        
 }

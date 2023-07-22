@@ -2,8 +2,7 @@ const queries = require('../../models/dogs')
 
 module.exports = (db) => async (req, res, next) => {
    
-    const selectDog = req.params.id
-    const dbRes = await queries.showOne(await db)(selectDog)
+    const dbRes = await queries.postDog(await db)(req.body)
 
     if(!dbRes.ok) return next({
         statusCode: 500,
@@ -12,9 +11,7 @@ module.exports = (db) => async (req, res, next) => {
 
     res.status(200).json({
         success: true,
-        data: {
-            dog: dbRes.response,
-}})
+        
+    })
     
 }
-

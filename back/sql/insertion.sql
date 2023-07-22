@@ -151,6 +151,8 @@ INSERT INTO dogs_meds (
 );
 
 
+
+
 -- Link dogs_foods
 
 INSERT INTO dogs_foods (
@@ -187,3 +189,4 @@ INSERT INTO dogs_foods (
   (SELECT id FROM dogs WHERE dogname LIKE 'Aron'),
   (SELECT id FROM foods WHERE foodname = 'standard')
 );
+

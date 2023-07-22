@@ -9,7 +9,6 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Map from "./pages/Map";
 
-
 const Main = () => {
   return (
     <Provider>
@@ -17,7 +16,7 @@ const Main = () => {
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/" guarded={true} component={Home} />
-          <Route path="/map" guarded={true} component={Map} />
+          <Route path="/map/:dogname" guarded={true} component={Map} />
           <Redirect to="/login" />
         </Switch>
       </Styled.Wrapper>
