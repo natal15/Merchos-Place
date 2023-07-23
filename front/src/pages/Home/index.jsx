@@ -12,7 +12,7 @@ import { useMutation } from 'react-query'
 import DogForm from "../../components/DogForm";
 import Input from "../../components/Input";
 import { validations } from "../../constants";
-import Button from "../../components/Button";
+
 
 
 
@@ -24,7 +24,7 @@ const Home = () => {
   const { data: user } = useUser();
   const { data: dogs } = useDog();
   const { newDog } = useCreate();
-  const { eraseDog } = useDelete();
+ 
 
   const { required } = validations;
 
@@ -34,7 +34,7 @@ const Home = () => {
 
   return (<>
     <Styled.User onClick={() => setShowModal(true)}>
-      <p>{user.data.username}</p>
+      <p>{user.data.username} 🦝</p>
     </Styled.User>
     <h1>Merchos Place</h1>
     <div>
@@ -42,13 +42,13 @@ const Home = () => {
 
         {dogs?.data?.map(({ dogname }) => <Link href={`/map/${dogname}`}>
           <p>
-            {dogname} -
+            {dogname} - 🐶🐺
 
           </p>
-
+          
 
         </Link>)}
-
+        
 
       </Styled.Probe>
     </div>
@@ -96,15 +96,15 @@ const Home = () => {
         validation={{ required }}
       />
     </DogForm>
-    <form button="Más cositas">
+    <form>
       <div>
-      <input name="dogname"
-        label={true}
-        placeholder="dogname"
-        validation={{ required }}>
-      </input>
+        <input name="dogname"
+          label={true}
+          placeholder="dogname"
+          validation={{ required }}>
+        </input>
       </div>
-      <label for="meds_dog">Choose meds:
+      <label htmlFor="meds_dog">Choose meds:
         <select name="meds" id="meds_dog">
           <option value="vitamins">Vitamins</option>
           <option value="bones">Bones</option>
@@ -115,7 +115,7 @@ const Home = () => {
         </select>
       </label>
       <div>
-      <button>+ cositas</button>
+        <button>+ cositas</button>
       </div>
     </form>
 

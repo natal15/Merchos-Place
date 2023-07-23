@@ -45,9 +45,11 @@ export const createDog = (client) => async (payload) => {
   }
 };
 
-export const deleteDog = () => async (params) => {
+export const deleteDog = (client) => async (params) => {
   try {
-    const { data } = await client.delete(`${PATH}/${params.dogname}`)
+    
+    const { data } = await client.delete(`${PATH}/${params?.dogname}`)
+    
     return data
   } catch (error) {
     console.info(">error [deleteDog]: ", error.message);

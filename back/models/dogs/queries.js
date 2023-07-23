@@ -33,21 +33,21 @@ const showDog = (dogname, chenil, gender, takesmeds,
         VALUES (${dogname}, ${chenil}, ${gender}, ${takesmeds}, 
         ${specialfood}, ${eatbehavior}, ${castrated})
         `
-// const medsFoods = (dogname1, foodname, dogname2, medname) => sql.unsafe`
-//         INSERT INTO dogs_foods (
-//                 dogs_foods_id, foods_id
-//               ) VALUES (
-//                 (SELECT id FROM dogs WHERE dogname = ${dogname1}),
-//                 (SELECT id FROM foods WHERE foodname = ${foodname})
-//               );
+const showMore = (dogname1, foodname, dogname2, medname) => sql.unsafe`
+        INSERT INTO dogs_foods (
+                dogs_foods_id, foods_id
+              ) VALUES (
+                (SELECT id FROM dogs WHERE dogname = ${dogname1}),
+                (SELECT id FROM foods WHERE foodname = ${foodname})
+              );
               
-//               INSERT INTO dogs_meds (
-//                 dogs_meds_id, meds_id
-//               ) VALUES (
-//                 (SELECT id FROM dogs WHERE dogname = ${dogname2}),
-//                 (SELECT id FROM meds WHERE medname = ${medname})
-//               );
-//               `
+              INSERT INTO dogs_meds (
+                dogs_meds_id, meds_id
+              ) VALUES (
+                (SELECT id FROM dogs WHERE dogname = ${dogname2}),
+                (SELECT id FROM meds WHERE medname = ${medname})
+              );
+              `
           
 
 const updateDog = (dogname, chenil, takesmeds, 
@@ -64,5 +64,6 @@ module.exports = {
     one,
     eliminateDog,
     showDog,
-    updateDog,        
+    updateDog,   
+    showMore,     
 }

@@ -1,4 +1,4 @@
-const { all, one, eliminateDog, showDog, updateDog } = require('./queries')
+const { all, one, eliminateDog, showDog, updateDog, showMore } = require('./queries')
 
 
 const showAll = (db) => async () => {
@@ -86,6 +86,23 @@ const changeDog = (db) => async (dog, newD) => {
     }
 }
 
+const postMore = (db) => async (moreD) => {
+    try {
+
+        const response = await db.query(showMore(moreD.dogname1,  
+            moreD.foodname, moreD.dogname2, moreD.medname))  
+        return {
+            ok: true,
+            response: response.rows
+        }
+    } catch(error) {
+        return {
+            ok: false,
+            message: error.message,
+        }
+    }
+}
+
 
 module.exports = {
     showAll,
@@ -93,5 +110,6 @@ module.exports = {
     eraseDog,
     postDog,
     changeDog,
+    postMore,
     
 }

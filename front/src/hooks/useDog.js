@@ -35,15 +35,16 @@ export const useCreate = () => {
 
 export const useDelete = () => {
   const queryClient = useQueryClient();
-
+  
   const { mutate: eraseDog } = useMutation({
-    mutationFn: dogs.deleteDog,
+    mutationFn: (params) => dogs.deleteDog(params),
     onSuccess: (result) => {
       if (result.success) {
         queryClient.invalidateQueries({ queryKey: ["dogDelete"] });
       } 
     }
   })
+  
   return { eraseDog };
 }
 
