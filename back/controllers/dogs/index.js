@@ -4,5 +4,6 @@ module.exports = {
     deleteOne: require('./delete-one'),
     createOne: require('./create-one'),
     modOne: require('./mod-one'),
-    createMore: require('./create-more')
+    createMed: require('./create-med'),
+    createFood: require('./create-food')
 }

@@ -7,7 +7,8 @@ module.exports = (db) => {
     router.delete('/:id', controllers.deleteOne(db))
     router.post('/', controllers.createOne(db))
     router.put('/:id', controllers.modOne(db))
-    router.post('/more', controllers.createMore(db))
+    router.post('/med', controllers.createMed(db))
+    router.post('/food', controllers.createFood(db))
 
 
 

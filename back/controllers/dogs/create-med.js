@@ -1,8 +1,11 @@
 const queries = require('../../models/dogs')
 
 module.exports = (db) => async (req, res, next) => {
-   
-    const dbRes = await queries.postMore(await db)(req.body)
+
+    const dog = req.query.dogname
+    const med = req.query.medname
+
+    const dbRes = await queries.postMed(await db)(dog, med)
 
     if(!dbRes.ok) return next({
         statusCode: 500,

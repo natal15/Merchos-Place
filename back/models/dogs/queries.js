@@ -24,46 +24,49 @@ const eliminateDog = (elim) => sql.unsafe`
         WHERE dogname = ${elim}
         `
 
-const showDog = (dogname, chenil, gender, takesmeds, 
-        specialfood, eatbehavior, castrated, dogname1, foodname, dogname2, medname)  => sql.unsafe`
+const showDog = (dogname, chenil, gender, takesmeds,
+        specialfood, eatbehavior, castrated, dogname1, foodname, dogname2, medname) => sql.unsafe`
         
         INSERT INTO Dogs
         (dogname, chenil, gender, takesmeds,
         specialfood, eatbehavior, castrated)
         VALUES (${dogname}, ${chenil}, ${gender}, ${takesmeds}, 
         ${specialfood}, ${eatbehavior}, ${castrated})
-        `
-const showMore = (dogname1, foodname, dogname2, medname) => sql.unsafe`
-        INSERT INTO dogs_foods (
-                dogs_foods_id, foods_id
-              ) VALUES (
-                (SELECT id FROM dogs WHERE dogname = ${dogname1}),
-                (SELECT id FROM foods WHERE foodname = ${foodname})
-              );
-              
-              INSERT INTO dogs_meds (
-                dogs_meds_id, meds_id
-              ) VALUES (
-                (SELECT id FROM dogs WHERE dogname = ${dogname2}),
-                (SELECT id FROM meds WHERE medname = ${medname})
-              );
-              `
-          
+        `   
 
-const updateDog = (dogname, chenil, takesmeds, 
-        specialfood, eatbehavior, castrated)  => sql.unsafe`
+const updateDog = (dogname, chenil, takesmeds,
+        specialfood, eatbehavior, castrated) => sql.unsafe`
                 
         UPDATE Dogs 
         SET chenil = ${chenil}, takesmeds = ${takesmeds}, specialfood = ${specialfood}, 
         eatbehavior = ${eatbehavior}, castrated = ${castrated}
         WHERE dogname = ${dogname}
-        `     
+        `
+
+const showMed = (dog, med) => sql.unsafe`
+            
+        INSERT INTO dogs_meds (dogs_meds_id, meds_id)
+        VALUES (
+        (SELECT id FROM dogs WHERE dogname = ${dog}),
+        (SELECT id FROM meds WHERE medname = ${med})
+        );
+        `
+
+const showFood = (dog, food) => sql.unsafe`
+        
+        INSERT INTO dogs_foods (dogs_foods_id, foods_id)
+        VALUES (
+        (SELECT id FROM dogs WHERE dogname = ${dog}),
+        (SELECT id FROM foods WHERE foodname = ${food})
+        );
+        `
 
 module.exports = {
-    all,
-    one,
-    eliminateDog,
-    showDog,
-    updateDog,   
-    showMore,     
+        all,
+        one,
+        eliminateDog,
+        showDog,
+        updateDog,
+        showMed,
+        showFood,
 }
