@@ -16,9 +16,9 @@ const Login = () => {
 
   return (
     <Styled.Page>
-      <Title>Login</Title>
+      <Title>Welcome to Merchos Place</Title>
 
-      <Form onSubmit={login} button="Enga pa entro">
+      <Form onSubmit={login} button="Login">
         <Input
           name="email"
           label={true}
@@ -35,7 +35,7 @@ const Login = () => {
       </Form>
 
       <Footer>
-        {/* <Link to="/register">Don't have account yet? Create one!</Link> */}
+        You need permissions to access
       </Footer>
     </Styled.Page>
   );

@@ -1,5 +1,4 @@
 import { Link } from "wouter";
-import YourComponent from "../../components/YourComponent"
 import { useData } from "../../hooks";
 import { useRoute } from "wouter"
 import { useQuery } from "react-query"
@@ -35,10 +34,7 @@ const Map = () => {
     <div>
       <Button onClick={handleDelete}> Sashay</Button>
     </div>
-    <YourComponent>
-
-
-    </YourComponent>
+   
     <Link to="/">Listado perritos</Link>
   </>
   )

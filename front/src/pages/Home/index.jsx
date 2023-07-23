@@ -10,8 +10,10 @@ import { useState, useEffect } from "react";
 import { createDog } from "../../services/dogs"
 import { useMutation } from 'react-query'
 import DogForm from "../../components/DogForm";
-import Input from "../../components/Input";
+import InputDog from "../../components/InputDog";
 import { validations } from "../../constants";
+import Logo from "../../components/Logo"
+import Footer from "../../components/Footer";
 
 
 
@@ -24,7 +26,14 @@ const Home = () => {
   const { data: user } = useUser();
   const { data: dogs } = useDog();
   const { newDog } = useCreate();
- 
+
+  const handleOptionSelect = (selectedOption) => {
+    console.log("Selected Option:", selectedOption);
+    
+  };
+
+  const options = ["Option 1", "Option 2", "Option 3", "Option 4"];
+
 
   const { required } = validations;
 
@@ -37,74 +46,78 @@ const Home = () => {
       <p>{user.data.username} 🦝</p>
     </Styled.User>
     <h1>Merchos Place</h1>
-    <div>
+    <Logo />
+    <Styled.DoggyTitle>
+      Perritos en adopción 💕👑🏻💖
+    </Styled.DoggyTitle>
+    <Styled.CuteDiv>
       <Styled.Probe>
-
-        {dogs?.data?.map(({ dogname }) => <Link href={`/map/${dogname}`}>
-          <p>
+        {dogs?.data?.map(({ dogname }) => 
+        <Link href={`/map/${dogname}`}>
+          <Styled.DoggyText>
             {dogname} - 🐶🐺
-
-          </p>
-          
-
+          </Styled.DoggyText>
         </Link>)}
-        
-
       </Styled.Probe>
-    </div>
+    </Styled.CuteDiv>
+    <Styled.DoggyTitle>
+      Add new Perrito 
+    </Styled.DoggyTitle>
     <DogForm onSubmit={newDog} button="Otro perrito piloto">
-      <Input
+      <InputDog
         name="dogname"
         label={true}
         placeholder="dogname"
         validation={{ required }}
       />
-      <Input
+      <InputDog
         name="chenil"
         label={true}
         placeholder="chenil"
         validation={{ required }}
       />
-      <Input
+      <InputDog
         name="gender"
         label={true}
         placeholder="gender"
         validation={{ required }}
       />
-      <Input
+      <InputDog
         name="takesmeds"
         label={true}
         placeholder="takesmeds"
         validation={{ required }}
       />
-      <Input
+      <InputDog
         name="specialfood"
         label={true}
         placeholder="specialfood"
         validation={{ required }}
       />
-      <Input
+      <InputDog
         name="eatbehavior"
         label={true}
         placeholder="eatbehavior"
         validation={{ required }}
       />
-      <Input
+      <InputDog
         name="castrated"
         label={true}
         placeholder="castrated"
         validation={{ required }}
       />
     </DogForm>
-    <form>
-      <div>
-        <input name="dogname"
-          label={true}
-          placeholder="dogname"
-          validation={{ required }}>
-        </input>
-      </div>
+    <Styled.DoggyTitle>
+      Need to update meds and food 
+    </Styled.DoggyTitle>
+    <DogForm button="+ cosites">
+      <div className="meds">
       <label htmlFor="meds_dog">Choose meds:
+      <Menu options={options} onSelect={handleOptionSelect} />
+      </label>
+    </div>
+      
+      {/* <label htmlFor="meds_dog">Choose meds:
         <select name="meds" id="meds_dog">
           <option value="vitamins">Vitamins</option>
           <option value="bones">Bones</option>
@@ -113,17 +126,11 @@ const Home = () => {
           <option value="cardiac">Cardiac</option>
 
         </select>
-      </label>
-      <div>
-        <button>+ cositas</button>
-      </div>
-    </form>
-
-    <div>
-      <p>Perretes</p>
-    </div>
-
-
+      </label> */}
+    </DogForm>
+    <Footer>
+      © 2023 Dog Finder. All rights reserved. Created by Team Paws
+    </Footer>
   </>)
 }
 

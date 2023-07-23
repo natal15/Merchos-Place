@@ -3,22 +3,19 @@ import { styled } from "styled-components";
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  margin-bottom: 15px;
   max-width: 252px;
 
   > * {
-    font-size: 21px;
-    padding: 0 12px;
+    font-size: 18px;
   }
 `;
 
 const Label = styled.label``;
 
 const Input = styled.input`
-  height: 25px;
+  height: 10px;
   border-radius: 5px;
-  padding: 10px;
+  padding: 8px;
   border: 1px solid #3498db;
 `;
 

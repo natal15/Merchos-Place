@@ -3,11 +3,11 @@ import Styled from './styles'
 import { useForm } from "react-hook-form";
 import Button from "../Button";
 
-const DogForm = ({ onSubmit, children, button, gap }) => {
+const DogForm = ({ onSubmit, children, button }) => {
   const { handleSubmit, register, formState } = useForm();
 
   return (
-    <Styled.Form onSubmit={handleSubmit(onSubmit)} gap={gap} autoComplete="off">
+    <Styled.Form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <Styled.Fields>
         {React.Children.map(children, (child) => {
           const { name } = child.props;

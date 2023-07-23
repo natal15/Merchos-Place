@@ -4,7 +4,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: ${({ gap }) => gap ? gap : '20'}px;
+  margin-bottom: 10px
 `;
 
 const Fields = styled.section`
