@@ -2,7 +2,8 @@ import axios from "axios";
 
 import { login, logout } from "./auth";
 import { basic } from "./user";
-import { dogData, oneDog, createDog, deleteDog } from "./dogs"
+import { dogData, oneDog, createDog, deleteDog, oneFood, oneMed, createMed, createF } from "./dogs"
+
 
 
 const client = axios.create({
@@ -25,6 +26,10 @@ const dogs = {
   dogData: dogData(client),
   createDog: createDog(client),
   deleteDog: deleteDog(client),
+  oneFood: oneFood(client),
+  oneMed: oneMed(client),
+  createMed: createMed(client),
+  createF: createF(client)
 }
 
 

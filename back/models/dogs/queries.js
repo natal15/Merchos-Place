@@ -61,6 +61,19 @@ const showFood = (dog, food) => sql.unsafe`
         );
         `
 
+const allFood = () => sql.unsafe`
+   
+        SELECT foodname
+        FROM foods
+        `
+
+const allMed = () => sql.unsafe`
+   
+        SELECT medname
+        FROM meds
+        `
+
+
 module.exports = {
         all,
         one,
@@ -69,4 +82,7 @@ module.exports = {
         updateDog,
         showMed,
         showFood,
+        allFood,
+        allMed,
+
 }

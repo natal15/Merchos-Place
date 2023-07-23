@@ -1,4 +1,4 @@
-const { all, one, eliminateDog, showDog, updateDog, showMed, showFood } = require('./queries')
+const { all, one, eliminateDog, showDog, updateDog, showMed, showFood, allFood, allMed } = require('./queries')
 
 
 const showAll = (db) => async () => {
@@ -118,6 +118,40 @@ const postFood = (db) => async (dog, food) => {
     }
 }
 
+const takeFood = (db) => async (selectDog) => {
+    
+    try {
+
+        const response = await db.query(allFood(selectDog))  
+        return {
+            ok: true,
+            response: response
+        }
+    } catch(error) {
+        return {
+            ok: false,
+            message: error.message,
+        }
+    }
+}
+
+const takeMed = (db) => async (selectDog) => {
+    
+    try {
+
+        const response = await db.query(allMed(selectDog))  
+        return {
+            ok: true,
+            response: response
+        }
+    } catch(error) {
+        return {
+            ok: false,
+            message: error.message,
+        }
+    }
+}
+
 
 module.exports = {
     showAll,
@@ -127,5 +161,7 @@ module.exports = {
     changeDog,
     postMed,
     postFood,
+    takeFood,
+    takeMed,
     
 }

@@ -69,10 +69,39 @@ const DoggyText = styled.p`
 
 `
 
+const Select = styled.select`
+  display: grid;
+  place-items: center;
+  width: 150px;
+  height: 25px;
+  margin: 0 0 30px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+
+`
+const Card = styled.label`
+  font-family: 'Montserrat', sans-serif;
+  color: #3498db;
+  font-size: 18px;
+
+`
+
+const Options = styled.option`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  
+`;
+
+
+
+
 export default {
   Probe,
   User,
   CuteDiv,
   DoggyTitle,
   DoggyText,
+  Select,
+  Card,
+  Options,
 }

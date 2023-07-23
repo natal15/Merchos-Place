@@ -9,7 +9,8 @@ module.exports = (db) => {
     router.put('/:id', controllers.modOne(db))
     router.post('/med', controllers.createMed(db))
     router.post('/food', controllers.createFood(db))
-
+    router.get('/meds', controllers.getMeds(db))
+    router.get('/foods', controllers.getFoods(db))
 
 
     return router

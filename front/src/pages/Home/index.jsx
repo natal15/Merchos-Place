@@ -4,7 +4,7 @@ import Menu from '../../components/Menu';
 import Modal from "../../components/Modal";
 // import Tab from '../../components/Tab';
 import Styled from './styles'
-import { useDog, useData, useCreate, useDelete } from "../../hooks/useDog";
+import { useDog, useData, useCreate, useDelete, useMed, useFood, useNewMed, useNewFood } from "../../hooks/useDog";
 import { useUser } from "../../hooks/useUser";
 import { useState, useEffect } from "react";
 import { createDog } from "../../services/dogs"
@@ -15,32 +15,28 @@ import { validations } from "../../constants";
 import Logo from "../../components/Logo"
 import Footer from "../../components/Footer";
 
-
-
-
-
-
-
 const Home = () => {
 
   const { data: user } = useUser();
   const { data: dogs } = useDog();
   const { newDog } = useCreate();
+  const { data: meds } = useMed();
+  const { data: foods } = useFood();
+  const { newMed } = useNewMed();
+  const { newFood } = useNewFood();
 
-  const handleOptionSelect = (selectedOption) => {
-    console.log("Selected Option:", selectedOption);
+  // const handleOptionSelect = (selectedOption) => {
+  //   console.log("Selected Option:", selectedOption);
     
-  };
-
-  const options = ["Option 1", "Option 2", "Option 3", "Option 4"];
-
-
+  // };
+  
+  
   const { required } = validations;
 
   const [showModal, setShowModal] = useState(false);
 
   if (showModal) return <Modal handleModal={setShowModal} />;
-
+ 
   return (<>
     <Styled.User onClick={() => setShowModal(true)}>
       <p>{user.data.username} 🦝</p>
@@ -110,11 +106,39 @@ const Home = () => {
     <Styled.DoggyTitle>
       Need to update meds and food 
     </Styled.DoggyTitle>
-    <DogForm button="+ cosites">
+    <DogForm onSubmit={newMed(dogname, medname)} button="+ cosites">
       <div className="meds">
-      <label htmlFor="meds_dog">Choose meds:
-      <Menu options={options} onSelect={handleOptionSelect} />
-      </label>
+      <Styled.Card htmlFor="dogy">Choose dog:
+      <Styled.Select>
+      {dogs?.data?.map(({ dogname }) => 
+        
+        <Styled.Options>
+            {dogname}
+        </Styled.Options>
+        )}
+      </Styled.Select>
+      </Styled.Card>
+      <Styled.Card htmlFor="meds_dog">Choose meds:
+      <Styled.Select>
+      {meds?.data?.map(({ medname }) => 
+        
+        <Styled.Options>
+            {medname}
+        </Styled.Options>
+        )}
+      </Styled.Select>
+      </Styled.Card>
+      <Styled.Card htmlFor="foods_dog">Choose foods:
+      <Styled.Select>
+      {foods?.data?.map(({ foodname }) => 
+        
+          <Styled.Options>
+            {foodname}
+          </Styled.Options>
+        )}
+      </Styled.Select>
+      {/* <Menu onSelect={handleOptionSelect} /> */}
+      </Styled.Card>
     </div>
       
       {/* <label htmlFor="meds_dog">Choose meds:

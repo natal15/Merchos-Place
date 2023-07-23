@@ -26,7 +26,7 @@ export const useCreate = () => {
     mutationFn: dogs.createDog,
     onSuccess: (result) => {
       if (result.success) {
-        queryClient.invalidateQueries({ queryKey: ["dogCreate"] });
+        queryClient.invalidateQueries({ queryKey: ["oneDog"] });
       } 
     }
   })
@@ -40,7 +40,7 @@ export const useDelete = () => {
     mutationFn: (params) => dogs.deleteDog(params),
     onSuccess: (result) => {
       if (result.success) {
-        queryClient.invalidateQueries({ queryKey: ["dogDelete"] });
+        queryClient.invalidateQueries({ queryKey: ["oneDog"] });
       } 
     }
   })
@@ -48,5 +48,48 @@ export const useDelete = () => {
   return { eraseDog };
 }
 
+export const useMed = () => {
+  const { data, isLoading } = useQuery({
+    queryKey: ["oneMed"],
+    queryFn: dogs.oneMed,
+  });
+  return { data, isLoading };
+};
+
+export const useFood = () => {
+  const { data, isLoading } = useQuery({
+    queryKey: ["oneFood"],
+    queryFn: dogs.oneFood,
+  });
+  return { data, isLoading };
+};
+
+export const useNewMed = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: newMed } = useMutation({
+    mutationFn: (params) => dogs.createMed(params),
+    onSuccess: (result) => {
+      if (result.success) {
+        queryClient.invalidateQueries({ queryKey: ["oneDog"] });
+      } 
+    }
+  })
+  return { newMed };
+}
+
+export const useNewFood = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: newFood } = useMutation({
+    mutationFn: (params) => dogs.createF(params),
+    onSuccess: (result) => {
+      if (result.success) {
+        queryClient.invalidateQueries({ queryKey: ["oneDog"] });
+      } 
+    }
+  })
+  return { newFood };
+}
 
 
