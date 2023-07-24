@@ -94,7 +94,7 @@ export const oneMed = (client) => async () => {
 
 export const createMed = (client) => async (params) => {
   try {
-    const { data } = await client.post(`${PATH}/meds?dogname=${params.dogname}&medname=${params.medname}`);
+    const { data } = await client.post(`${PATH}/med?dogname=${params.dogname}&medname=${params.medname}`);
 
     return data
 
@@ -108,7 +108,7 @@ export const createMed = (client) => async (params) => {
 
 export const createF = (client) => async (params) => {
   try {
-    const { data } = await client.post(`${PATH}/foods?dogname=${params.dogname}&foodname=${params.foodname}`);
+    const { data } = await client.post(`${PATH}/food?dogname=${params.dogname}&foodname=${params.foodname}`);
 
     return data
 

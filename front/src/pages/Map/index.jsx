@@ -5,10 +5,20 @@ import { useQuery } from "react-query"
 import { dogData } from "../../services/dogs"
 import { useDelete } from "../../hooks/useDog";
 import Button from "../../components/Button";
+import Styled from './styles'
+import { useUser } from "../../hooks/useUser";
+import { useState } from "react";
+import Modal from "../../components/Modal";
+import Logo from "../../components/Logo"
+import Footer from "../../components/Footer";
+
 
 const Map = () => {
+  const { data: user } = useUser();
   const { eraseDog } = useDelete();
   const [, params] = useRoute("/map/:dogname");
+
+  
 
   const { data: dog, isFetching } = useQuery(["dog", params], () => dogData(params));
 
@@ -22,20 +32,40 @@ const Map = () => {
     }
   };
 
+  const [showModal, setShowModal] = useState(false);
+
+  if (showModal) return <Modal handleModal={setShowModal} />
+
   return (<>
     <div>
-      <p>This screen presents the data of the dog "{params?.dogname}"</p>
+    <Styled.User onClick={() => setShowModal(true)}>
+      <p>{user.data.username} 🦝</p>
+    </Styled.User>
+    <h1>Merchos Place</h1>
+    <Logo />
+    <Styled.DoggyTitle>
+      This screen presents the data of "{params?.dogname}"
+    </Styled.DoggyTitle>
     </div>
-    <p>Chenil: {dog?.data?.dog?.chenil}</p>
-    <p>Medicines: {dog?.data?.dog?.array_agg}</p>
-    <p>Food: {dog?.data?.dog?.foodname}</p>
-    <p>Eat Behavior: {dog?.data?.dog?.eatbehavior}</p>
-    <p>Castrated: {dog?.data?.dog?.castrated}</p>
-    <div>
+    <Styled.CuteDiv>
+    <Styled.DoggyText>Chenil: {dog?.data?.dog?.chenil}</Styled.DoggyText>
+    <Styled.DoggyText>Medicines: {dog?.data?.dog?.array_agg}</Styled.DoggyText>
+    <Styled.DoggyText>Food: {dog?.data?.dog?.foodname}</Styled.DoggyText>
+    <Styled.DoggyText>Eat Behavior: {dog?.data?.dog?.eatbehavior}</Styled.DoggyText>
+    <Styled.DoggyText>Castrated: {dog?.data?.dog?.castrated}</Styled.DoggyText>
+    </Styled.CuteDiv>
+    <Styled.Section>
       <Button onClick={handleDelete}> Sashay</Button>
-    </div>
+      <Link href={"/"}>
+        <Styled.DoggyText>
+        Return Home Page
+        </Styled.DoggyText>
+        </Link>
+      </Styled.Section>
+    <Footer>
+      © 2023 Dog Finder. All rights reserved. Created by Team Paws
+    </Footer>
    
-    <Link to="/">Listado perritos</Link>
   </>
   )
 }
