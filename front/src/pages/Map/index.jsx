@@ -49,7 +49,7 @@ const Map = () => {
     </div>
     <Styled.CuteDiv>
     <Styled.DoggyText>Chenil: {dog?.data?.dog?.chenil}</Styled.DoggyText>
-    <Styled.DoggyText>Medicines: {dog?.data?.dog?.array_agg}</Styled.DoggyText>
+    <Styled.DoggyText>Medicines: {dog?.data?.dog?.array_agg.slice(1, -1)}</Styled.DoggyText>
     <Styled.DoggyText>Food: {dog?.data?.dog?.foodname}</Styled.DoggyText>
     <Styled.DoggyText>Eat Behavior: {dog?.data?.dog?.eatbehavior}</Styled.DoggyText>
     <Styled.DoggyText>Castrated: {dog?.data?.dog?.castrated}</Styled.DoggyText>
