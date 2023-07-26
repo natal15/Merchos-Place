@@ -80,9 +80,9 @@ const Home = () => {
     </Styled.DoggyTitle>
     <Styled.CuteDiv>
       <Styled.Probe>
-        {dogs?.data?.map(({ dogname }) =>
-          <Link href={`/map/${dogname}`}>
-            <Styled.DoggyText key={dogname}>
+        {dogs?.data?.map(({ dogname }, index) =>
+          <Link key={index} href={`/map/${dogname}`}>
+            <Styled.DoggyText>
               {dogname} - 🐶🐺
             </Styled.DoggyText>
           </Link>)}
