@@ -28,19 +28,19 @@ const Home = () => {
   const [selectedDogname, setSelectedDogname] = useState('');
   const [selectedMedname, setSelectedMedname] = useState('');
   const [selectedFoodname, setSelectedFoodname] = useState('');
- 
+
   const handleDognameChange = (event) => {
     setSelectedDogname(event.target.value);
   };
-  
+
   const handleMednameChange = (event) => {
     setSelectedMedname(event.target.value);
   };
-  
+
   const handleFoodnameChange = (event) => {
     setSelectedFoodname(event.target.value);
   };
-  
+
   const handleFormSubmit = async (event) => {
     // event.preventDefault();
     console.log("hola", event)
@@ -49,48 +49,49 @@ const Home = () => {
     console.log("Selected Med Name:", selectedMedname);
     console.log("Selected Food Name:", selectedFoodname);
 
-    try{
-  
-    await newMed({dogname: selectedDogname, medname: selectedMedname});
-    await newFood({dogname: selectedDogname, foodname: selectedFoodname});
+    try {
 
-    setSelectedDogname('');
-    setSelectedMedname('');
-    setSelectedFoodname('');
-  } catch (error) {
-    console.error("Error submitting form:", error);
-  }}
-  
-  
+      await newMed({ dogname: selectedDogname, medname: selectedMedname });
+      await newFood({ dogname: selectedDogname, foodname: selectedFoodname });
+
+      setSelectedDogname('');
+      setSelectedMedname('');
+      setSelectedFoodname('');
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  }
+
+
   const { required } = validations;
 
   const [showModal, setShowModal] = useState(false);
 
   if (showModal) return <Modal handleModal={setShowModal} />;
- 
+
   return (<>
     <Styled.User onClick={() => setShowModal(true)}>
-      <p>{user.data.username} 🦝</p>
+      <p>{user.data.username} 😀</p>
     </Styled.User>
-    <h1>Merchos Place</h1>
+    <Styled.StyledH1>Merchos Place</Styled.StyledH1>
     <Logo />
     <Styled.DoggyTitle>
-      Perritos en adopción 💕👑🏻💖
+      Dogs living in the shelter 💕👑🏻💖
     </Styled.DoggyTitle>
     <Styled.CuteDiv>
       <Styled.Probe>
-        {dogs?.data?.map(({ dogname }) => 
-        <Link href={`/map/${dogname}`}>
-          <Styled.DoggyText key={dogname}>
-            {dogname} - 🐶🐺
-          </Styled.DoggyText>
-        </Link>)}
+        {dogs?.data?.map(({ dogname }) =>
+          <Link href={`/map/${dogname}`}>
+            <Styled.DoggyText key={dogname}>
+              {dogname} - 🐶🐺
+            </Styled.DoggyText>
+          </Link>)}
       </Styled.Probe>
     </Styled.CuteDiv>
     <Styled.DoggyTitle>
-      Add new Perrito 
+      Add new dog
     </Styled.DoggyTitle>
-    <DogForm onSubmit={newDog} button="Otro perrito piloto">
+    <DogForm onSubmit={newDog} button="Add dog">
       <InputDog
         name="dogname"
         label={true}
@@ -135,56 +136,43 @@ const Home = () => {
       />
     </DogForm>
     <Styled.DoggyTitle>
-      Need to update meds and food 
+      Update new dog's food and meds:
     </Styled.DoggyTitle>
-    <DogForm onSubmit={handleFormSubmit} button="+ cosites">
+    <DogForm onSubmit={handleFormSubmit} button="Add food and meds">
       <div className="meds">
-      <Styled.Card htmlFor="dogy">
-        Choose dog:
-      <Styled.Select value={selectedDogname} onChange={handleDognameChange}>
-      {dogs?.data?.map(({ dogname }) => (
-        
-        <Styled.Options key={dogname} value={dogname}>
-            {dogname}
-        </Styled.Options>
-        ))}
-      </Styled.Select>
-      </Styled.Card>
-      <Styled.Card htmlFor="meds_dog">
-        Choose meds:
-      <Styled.Select value={selectedMedname} onChange={handleMednameChange}>
-      {meds?.data?.map(({ medname }) => (
-        
-        <Styled.Options key={medname} value={medname}>
-            {medname}
-        </Styled.Options>
-        ))}
-      </Styled.Select>
-      </Styled.Card>
-      <Styled.Card htmlFor="foods_dog">
-        Choose foods:
-      <Styled.Select value={selectedFoodname} onChange={handleFoodnameChange}>
-      {foods?.data?.map(({ foodname }) => (
-        
-          <Styled.Options key={foodname} value={foodname}>
-            {foodname}
-          </Styled.Options>
-        ))}
-      </Styled.Select>
-      {/* <Menu onSelect={handleOptionSelect} /> */}
-      </Styled.Card>
-    </div>
-      
-      {/* <label htmlFor="meds_dog">Choose meds:
-        <select name="meds" id="meds_dog">
-          <option value="vitamins">Vitamins</option>
-          <option value="bones">Bones</option>
-          <option value="digest">Digest</option>
-          <option value="dermatologic">Dermatologic</option>
-          <option value="cardiac">Cardiac</option>
+        <Styled.Card htmlFor="dogy">
+          Choose the new dog:
+          <Styled.Select value={selectedDogname} onChange={handleDognameChange}>
+            {dogs?.data?.map(({ dogname }) => (
 
-        </select>
-      </label> */}
+              <Styled.Options key={dogname} value={dogname}>
+                {dogname}
+              </Styled.Options>
+            ))}
+          </Styled.Select>
+        </Styled.Card>
+        <Styled.Card htmlFor="meds_dog">
+          Choose meds:
+          <Styled.Select value={selectedMedname} onChange={handleMednameChange}>
+            {meds?.data?.map(({ medname }) => (
+
+              <Styled.Options key={medname} value={medname}>
+                {medname}
+              </Styled.Options>
+            ))}
+          </Styled.Select>
+        </Styled.Card>
+        <Styled.Card htmlFor="foods_dog">
+          Choose food:
+          <Styled.Select value={selectedFoodname} onChange={handleFoodnameChange}>
+            {foods?.data?.map(({ foodname }) => (
+              <Styled.Options key={foodname} value={foodname}>
+                {foodname}
+              </Styled.Options>
+            ))}
+          </Styled.Select>
+        </Styled.Card>
+      </div>
     </DogForm>
     <Footer>
       © 2023 Dog Finder. All rights reserved. Created by Team Paws
