@@ -1,5 +1,18 @@
 import { styled } from "styled-components";
 
+const StyledH1 = styled.h1`
+  font-size: 3rem;
+  color: #2f4f4f;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin: 50px 0;
+  padding: 10px;
+  background-color: #f0f8ff;
+  border: 3px solid #4682b4;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+`;
+
 const CuteDiv = styled.div`
   position: relative;
   display: grid;
@@ -73,6 +86,7 @@ const Section = styled.section`
 
 
 export default {
+  StyledH1,
   User,
   CuteDiv,
   DoggyTitle,

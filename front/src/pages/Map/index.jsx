@@ -1,5 +1,4 @@
 import { Link } from "wouter";
-import { useData } from "../../hooks";
 import { useRoute } from "wouter"
 import { useQuery } from "react-query"
 import { dogData } from "../../services/dogs"
@@ -39,9 +38,9 @@ const Map = () => {
   return (<>
     <div>
     <Styled.User onClick={() => setShowModal(true)}>
-      <p>{user.data.username} 🦝</p>
+      <p>{user.data.username} 😀</p>
     </Styled.User>
-    <h1>Merchos Place</h1>
+    <Styled.StyledH1>Merchos Place</Styled.StyledH1>
     <Logo />
     <Styled.DoggyTitle>
       This screen presents the data of "{params?.dogname}"

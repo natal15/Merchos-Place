@@ -43,11 +43,6 @@ const Home = () => {
 
   const handleFormSubmit = async (event) => {
     // event.preventDefault();
-    console.log("hola", event)
-    console.log("Submitting form...");
-    console.log("Selected Dog Name:", selectedDogname);
-    console.log("Selected Med Name:", selectedMedname);
-    console.log("Selected Food Name:", selectedFoodname);
 
     try {
 
